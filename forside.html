@@ -27,12 +27,12 @@
         }
 
         tr:nth-child(odd) {
-            background-color: grey;
+            background-color: rgb(189, 75, 75);
 
         }
 
         tr:nth-child(even) {
-            background-color: rgb(236, 236, 238);
+            background-color: rgb(137, 137, 241);
         }
 
         .onClickTal {
@@ -172,7 +172,7 @@
                     }
                 }
             }
-            xmlhttp.open("GET", "http://localhost:8080/hentskibinfo", true);
+            xmlhttp.open("GET", "http://localhost:8081/hentskibinfo", true);
             xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             xmlhttp.send();
 
@@ -205,7 +205,7 @@
                     document.getElementById("id_motor2Omdrejning").innerHTML = obj2[0].skib_motor02_omdrejninger;
                 }
             }
-            xmlhttp2.open("POST", "http://localhost:8080/hentskibdata", true);
+            xmlhttp2.open("POST", "http://localhost:8081/hentskibdata", true);
             xmlhttp2.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             xmlhttp2.send(params);
 
