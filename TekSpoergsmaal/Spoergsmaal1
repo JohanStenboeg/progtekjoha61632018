@@ -1,0 +1,41 @@
+SIKRING AF DATABASE MOD SQL-Injection
+For at lave et sql-injection angreb, skal hackeren kende databasen der er brugt, 
+samt have et sted at skrive sit SQL-kald eller query.
+Hvis hackeren kender databasen og eventuelt hvilke navne,
+ man har givet de forskellige variabler
+En normal query kunne se sådan ud. 
+SELECT bruger_id FROM bruger_database
+ WHERE brugernavn='$bruger'
+  AND kodeord='$kodeord' ;
+  Hvor den retunerer kodeord og brugernavn.
+
+  Hvis man så ændre kaldet til:
+  SELECT bruger_id FROM bruger_database WHERE bruger=' '
+   or 1=1 ; --' and kodeord='$kodeord' ;
+
+1=1 er korrekt og "--" forstås som en "komment", så resten bliver ignoreret. 
+Det databasen forstår er så: 
+SELECT bruger_id FROM bruger_database WHERE bruger=' ' or 1=1 ;
+Hvor hackeren får adgang til den første bruger i databasen, hvilket typisk er admin.
+
+For at forhindre dette, kan man gøre forskellige ting. 
+Den nemmeste måde er at forhindre tegn som --, =, _, $, %, # osv. at blive indtastet
+Dette forhindre hackeren i at bruge sql "tricks" til at få adgang. 
+
+En anden måde er at lave prepared statements,
+så det er en bestemt formular man sender til databasen
+hvor "brugeren" kun har adgang til de forskellige parametre
+fx. firstname, så sættes alt der indtastes ind på "firstname" pladsen i statementet. Alt i "firstname" bliver lavet om til en string
+og man kan derfor ikke lave forskellige sql "tricks".
+
+Her ses et eksempel
+Først oprettes en query, og efter opsættes de forskellige parametrer. 
+// prepare and bind
+$stmt = $conn->prepare("INSERT INTO MyGuests (firstname, lastname, email) VALUES (?, ?, ?)");
+$stmt->bind_param("sss", $firstname, $lastname, $email);
+
+// set parameters and execute
+$firstname = "John";
+$lastname = "Doe";
+$email = "john@example.com";
+$stmt->execute();

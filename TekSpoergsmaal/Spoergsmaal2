@@ -1,0 +1,30 @@
+KRYPTERING SYMETRISK/ASYMETRISK
+Kryptering er en metode der bruges til at beskytte personfølsom data. 
+Jo mere følsom dataen er, destro stærkere kryptering bliver benyttet. 
+Der findes mange forskellige krypteringsmetoder, nogle stærkere end andre og nogle mere anvendt end andre. 
+Alle med samme formål, at beskytte data. Afhængigt af dataens type, bruges også forskellige krypterinsmetoder. 
+Ved opbevaring af kodeord i en database bruges ofte krypteringsmetoden "hashing",
+der ved hjælp af en specielt algoritme krypterer kodeordet til en ureversibel kombination af tegn. 
+For at kende det originale kodeord, skal hackeren finde det ord der er brugt ved at gætte,
+ istedet for at bruge et program til at komme tilbage til det originale ord. 
+Ved "hashing" kan der gøres brug af "salting", hvor man sætter en automatisk genereret samling af tegn før og efter kodeordet,
+derefter "hasher" man kodeordet og hackeren skal nu gætte selve kodeordet, samt de ekstra tegn for at gætte kodeordet. Dette er næsten umuligt,
+og en meget sikker løsning. 
+En anden metode er at anvende AES (Advanced Encryption Standard)
+der bruger en symetrisk krypterinsalgoritme. 
+Den bruger en blok-kryptering, der krypterer
+dataen i en fast størrelses blok ad gangen
+i forhold til andre der krypterer bit for bit.
+Ved symetrisk kryptering forstås at: 
+Der er en privat nøgle, kun de personer der skal kunne dekrypterer dataen kender. Denne måde er mindre sikker end den asymetriske,
+da det kun kræver adgang til en nøgle istedet for 2. 
+Ved asymetrisk kryptering forstås at: 
+Der bruges en kypteringsnøgle til at kryptere den originale data til krypteret data. Når dataen skal tilbage til original, 
+dekrypterer man dataen. Her bruges en anden nøgle. 
+Man har ofte en private key og en public key. Hvis man sender noget til en, så krypterer man det først med modtagerens public key, 
+og derefter med sin egen private key. Når modtageren får det, så skal modtageren dekrypterer dataen med sin private key og så ens public key. 
+Ved at gøre dette er det utroligt svært for hackere at se den data der er blevet sendt mellem de 2 parter. Selv hvis han kendte afsenderens public key,
+og brugte den, ville det ikke give nogen mening, da dataen først skulle dekrypteres med modtagens private key. 
+
+
+

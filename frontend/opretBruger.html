@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>loginprogtek2018JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+        form {border: 3px solid #f1f1f1;}
+        
+        input[type=text], input[type=password], input[type=email] {
+          width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          box-sizing: border-box;
+        }
+        
+        button {
+          background-color: rgb(31, 143, 196);
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          cursor: pointer;
+          width: 100%;
+        }
+        
+        button:hover {
+          opacity: 0.8;
+        }
+        
+        .cancelbtn {
+          width: auto;
+          padding: 10px 18px;
+          background-color: #f44336;
+        }
+        
+        .imgcontainer {
+          text-align: center;
+          margin: 24px 0 12px 0;
+        }
+        
+        img.avatar {
+          width: 20%;
+          border-radius: 50%;
+        }
+        
+        .container {
+          padding: 16px;
+        }
+        
+        span.psw {
+          float: right;
+          padding-top: 16px;
+        }
+        </style>
+</head>
+
+<body>
+    <form action="/action_page.php">
+        <div class="imgcontainer">
+            <img src="user-login-icon-14.png" alt="Avatar" class="avatar">
+            <h1>Opret Bruger</h1>
+        </div>
+
+        <div class="container">
+            <label for="email"><b>Brugernavn</b></label>
+            <input type="email" placeholder="Email" name="email" required>
+
+            <label for="fname"><b>Fornavn</b></label>
+            <input type="text" placeholder="Fornavn" name="fname" required>
+
+            <label for="lname"><b>Efternavn</b></label>
+            <input type="text" placeholder="Efternavn" name="lname" required>
+
+            <label for="psw"><b>Kodeord</b></label>
+            <input type="password" placeholder="Kodeord" name="psw" required>
+
+            <label for="psw"><b>Gentag Kodeord</b></label>
+            <input type="password" placeholder="Kodeord" name="gpsw" required>
+
+            <input type="checkbox" name="checkbox01alder" value="over18" required> Jeg er over 18 år gammel<br>
+
+            <button onclick=opretNyBruger() type="submit">Opret Bruger</button>
+        </div>
+    </form>
+<script>
+var opretNyBruger = function opretNyBruger() {
+    var email = document.getElementsByName(email);
+    var fname = document.getElementsByName(fname);
+    var lname = document.getElementsByName(lname);
+    var psw = document.getElementsByName(psw);
+    var psw2 = document.getElementsByName(psw2);
+    
+    if(psw == psw2){
+        console.log("virker")
+        
+    } else{
+        alert("Kodeord matcher ikke")
+
+
+    }
+    
+}
+
+</script>
+
+</body>
+
+</html>

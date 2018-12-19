@@ -1,0 +1,19 @@
+{
+    "name": "**INSERT NAME**",
+    "version": "1.0.0",
+    "description": "**INSERT DESCRIPTION**",
+    "main": "**INSERT MAIN JS FILE**",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/JohanStenboeg/progtekjoha61632018"
+    },
+    "author": "Johan Stenbøg",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/JohanStenboeg/progtekjoha61632018" 
+    },
+    "homepage": "https://github.com/JohanStenboeg/progtekjoha61632018"
+  }
