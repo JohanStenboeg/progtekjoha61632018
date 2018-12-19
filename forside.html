@@ -59,6 +59,22 @@
     <h2 id="h2Frontpage">Velkommen til skib-oversigten</h2>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <p id="para"></p>
+    <table>
+        <tr>
+            <th>Location</th>
+            <th>Temperatur</th>
+            <th>Skyer</th>
+            <th>Luftfugtighed</th>
+            <th>Vindhastighed og retning</th>
+        </tr>
+        <tr>
+            <th id="id_locationname">vejrData</th>
+            <th id="id_temperaturvejr">vejrData</th>
+            <th id="id_skyText">vejrData</th>
+            <th id="id_humidity">vejrData</th>
+            <th id="id_windText">vejrData</th>
+        </tr>
+    </table>
 
 
     <table>
@@ -91,6 +107,8 @@
         </tr>
     </table>
     <script>
+      
+
         var cookieID = prompt("Skriv ID");
         document.cookie = "uniktID="+cookieID+";";
         
@@ -192,6 +210,9 @@
             xmlhttp2.send(params);
 
         }
+     
+
+
     </script>
 
 </body>
