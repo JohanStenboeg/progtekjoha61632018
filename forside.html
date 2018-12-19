@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
-            background-color: rgb(157, 157, 255)
         }
 
         table {
@@ -15,6 +14,7 @@
             border-collapse: collapse;
             width: 100%;
             border-width: 5px;
+            align-content: center;
 
         }
 
@@ -42,8 +42,15 @@
         .onClickTal:hover {
             background-color: rgb(123, 162, 247)
         }
-        .topheader{
+
+        .topheader {
             background-color: yellow;
+        }
+        h2{
+           text-align: center;
+        }
+        .tables{
+            align-content: center;
         }
     </style>
 </head>
@@ -51,15 +58,16 @@
 <body>
     <h2 id="h2Frontpage">Velkommen til skib-oversigten</h2>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <p id="para"></p>
 
 
-    <table style="text-align:center">
+    <table>
         <ul id="liste"></ul>
     </table>
-    <table style="text-align:center">
+    <table>
         <!--tr defines row, th defines header cell-->
-       
-        <tr>
+
+        <tr class="tr">
             <th>Skibets Fart(Knob)</th>
             <th>Skibets Kurs(Grader)</th>
             <th>Skibets GPS N Koordinat</th>
@@ -71,19 +79,47 @@
             <th>Motor 2 omdrejninger</th>
         </tr>
         <tr>
-            <th id ="id_fart">data</th>
-            <th id ="id_kurs">data</th>
-            <th id ="id_gpsN">data</th>
-            <th id ="id_gpsE">data</th>
-            <th id ="id_vindretning">data</th>
-            <th id ="id_vindstyrke">data</th>
-            <th id ="id_temperatur">data</th>
-            <th id ="id_motor1Omdrejning">data</th>
-            <th id ="id_motor2Omdrejning">data</th>
+            <th id="id_fart">data</th>
+            <th id="id_kurs">data</th>
+            <th id="id_gpsN">data</th>
+            <th id="id_gpsE">data</th>
+            <th id="id_vindretning">data</th>
+            <th id="id_vindstyrke">data</th>
+            <th id="id_temperatur">data</th>
+            <th id="id_motor1Omdrejning">data</th>
+            <th id="id_motor2Omdrejning">data</th>
         </tr>
     </table>
     <script>
-        var startappend = "<tr><th>Skib_ID</th><th>Skib_Navn</th><th>Skib_Hjemhavn</th><th>Skib_kaldesignal</th><th>Skib_MMSI</th><th>Skib_BRT/BT(TONS)</th><th>Skib_Længde(cm)</th><th>Skib_MaxCrew</th></tr>"
+        var cookieID = prompt("Skriv ID");
+        document.cookie = "uniktID="+cookieID+";";
+        
+        //increment ID
+        var visitbefore = confirm("Hvis du har besøgt siden før, tryk ja");
+        if (visitbefore){
+            var visitcount = findCookieDesc("visitcount");
+            console.log(visitbefore)
+            var visistcountadd = (parseInt(visitcount)+1);
+            document.cookie = "visitcount="+visistcountadd+";"
+        }else{
+            document.cookie = "visitcount=1;"
+        }
+        //velkommen besked 
+        var visistcountadd = (parseInt(findCookieDesc("visitcount"))+1);
+        document.getElementById("para").innerHTML = "Hej "+cookieID+", klokken er "+ new Date().toLocaleTimeString() + " og du har besøgt denne side "+ findCookieDesc('visitcount') +" gange."
+        
+        //find cookie
+        function findCookieDesc(name) {
+        var match = document.cookie.match(new RegExp('(^| )' + name  + '=([^;]+)'));
+        if (match) return match[2];
+        }
+        
+        secookies();
+        function secookies(){
+            console.log(document.cookie)
+        }
+        var startappend =
+            "<tr><th>Skib_ID</th><th>Skib_Navn</th><th>Skib_Hjemhavn</th><th>Skib_kaldesignal</th><th>Skib_MMSI</th><th>Skib_BRT/BT(TONS)</th><th>Skib_Længde(cm)</th><th>Skib_MaxCrew</th></tr>"
         $('#liste').append($(startappend));
         hentSkibInfo();
 
@@ -102,8 +138,9 @@
                     for (let index = 0; index < obj.length; index++) {
                         var start = '<tr>';
                         var skib_id = '<td id="' + obj[index].skib_id +
-                            '" class = "onClickTal" onclick = "hentskibdata(this.id)" >' + obj[index].skib_id + ' </td>'
-                        var skib_navn = '<td>' + obj[index].skib_navn + ' </td>'    
+                            '" class = "onClickTal" onclick = "hentskibdata(this.id)" >' + obj[index].skib_id +
+                            ' </td>'
+                        var skib_navn = '<td>' + obj[index].skib_navn + ' </td>'
                         var skib_hjemhavn = '<td>' + obj[index].skib_hjemhavn + ' </td>'
                         var skib_kaldesignal = '<td>' + obj[index].skib_kaldesignal + ' </td>'
                         var skib_MMSI = '<td>' + obj[index].skib_MMSI + ' </td>'
@@ -111,7 +148,8 @@
                         var skib_længde = '<td>' + obj[index].skib_længde + ' </td>'
                         var skib_maxcrew = '<td>' + obj[index].skib_max_crew + ' </td>'
                         var slut = '</tr>'
-                        var finallinje = start + skib_id + skib_navn + skib_hjemhavn + skib_kaldesignal + skib_MMSI + skib_BRT_BT_TONS + skib_længde + skib_maxcrew + slut;
+                        var finallinje = start + skib_id + skib_navn + skib_hjemhavn + skib_kaldesignal + skib_MMSI +
+                            skib_BRT_BT_TONS + skib_længde + skib_maxcrew + slut;
                         $('#liste').append($(finallinje));
                     }
                 }
@@ -147,8 +185,8 @@
                     document.getElementById("id_temperatur").innerHTML = obj2[0].skib_Otemp;
                     document.getElementById("id_motor1Omdrejning").innerHTML = obj2[0].skib_motor01_omdrejninger;
                     document.getElementById("id_motor2Omdrejning").innerHTML = obj2[0].skib_motor02_omdrejninger;
+                }
             }
-        }
             xmlhttp2.open("POST", "http://localhost:8081/hentskibdata", true);
             xmlhttp2.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             xmlhttp2.send(params);

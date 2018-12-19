@@ -68,7 +68,7 @@ exports.opretskibinfo = function (req, res) {
             if (err) throw err;
             console.log("connected");
         });
-        con.query("INSERT INTO table_skibinfo(skib_navn, skib_hjemhavn, skib_kaldesignal, skib_MMSI, skib_anvendelse, skib_BRT_BT_TONS, skib_længde, skib_max_crew)values('" + req.body.skib_navn + "','" + req.body.skib_hjemhavn + "','" + req.body.skib_kaldesignal + "',' + req.body.skib_MMSI + ','" + req.body.skib_anvendelse + "'," + req.body.skib_BRT_BT_TONS + "," + req.body.skib_længde + "","" + req.body.skib_max_crew + ")", function (err, result) {
+        con.query("INSERT INTO table_skibinfo(skib_navn, skib_hjemhavn, skib_kaldesignal, skib_MMSI, skib_anvendelse, skib_BRT_BT_TONS, skib_længde, skib_max_crew)values('" + req.body.skib_navn + "','" + req.body.skib_hjemhavn + "','" + req.body.skib_kaldesignal + "'," + req.body.skib_MMSI + ",'" + req.body.skib_anvendelse + "'," + req.body.skib_BRT_BT_TONS + "," + req.body.skib_længde + "," + req.body.skib_max_crew + ")", function (err, result) {
             if (err) throw err;
             console.log("Inserted skib_data about " + req.body.skib_navn + " into mysql db");
             res.send(result);
@@ -92,7 +92,7 @@ exports.opretskibdata = function (req, res) {
             if (err) throw err;
             console.log("connected");
         });
-        con.query("insert into table_skibdata(skib_id, skib_fart, skib_kurs, skib_GPS_N, skib_GPS_E, skib_vindretning, skib_vindstyrke, skib_Otemp, skib_motor01_omdrejninger, skib_motor02_omdrejninger)values(" + req.body.skib_id + "," + req.body.skib_fart + "," + req.body.skib_kurs + ",'" + req.body.skib_GPS_N + "','" + req.body.skib_GPS_E + "'," + req.body.skib_vindretning + "," + req.body.skib_vindstyrke + "," + req.body.skib_Otemp + "," + req.body.skib_motor01_omdrejninger + "," + req.body.skib_motor02_omdrejninger + ")", function (err, result) {
+        con.query("INSERT INTO table_skibdata(skib_id, skib_fart, skib_kurs, skib_GPS_N, skib_GPS_E, skib_vindretning, skib_vindstyrke, skib_Otemp, skib_motor01_omdrejninger, skib_motor02_omdrejninger)values(" + req.body.skib_id + "," + req.body.skib_fart + "," + req.body.skib_kurs + ",'" + req.body.skib_GPS_N + "','" + req.body.skib_GPS_E + "'," + req.body.skib_vindretning + "," + req.body.skib_vindstyrke + "," + req.body.skib_Otemp + "," + req.body.skib_motor01_omdrejninger + "," + req.body.skib_motor02_omdrejninger + ")", function (err, result) {
             if (err) throw err;
             console.log("Inserted kontoinfo about " + req.body.skib_id + " into mysql db");
             res.send(result);
